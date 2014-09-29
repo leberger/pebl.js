@@ -18,6 +18,9 @@
  * 
  ***/
 
+if ('undefined' === typeof IS_DEVELOPEMENT_MODE)
+  var IS_DEVELOPEMENT_MODE = false;
+
 /**
  * 
  * @param jQueryElement tplElement
@@ -66,8 +69,8 @@ function Pebl(tplElement, url, events) {
       html = html.replace(regx, htmlResult);
     }
     else {
-      html = '';
-      console.warn('no html template element was found for"' + key + '"');
+      //we do not modify html
+      IS_DEVELOPEMENT_MODE && console.warn('no html template element was found for"' + key + '"');
     }
     return html;
   }
@@ -83,14 +86,14 @@ function Pebl(tplElement, url, events) {
           }
           else {
             var regx = new RegExp('{' + key + '}', 'g');
-            html = html.replace(regx, oneData ? oneData : '');
+            html = html.replace(regx, (null !== oneData && false !== oneData) ? oneData : ' ');
           }
         } catch (e) {
           console.warn(e.message);
         }
       }
       else {
-        console.warn('Man, why, why so many zombies disguised in Santa Claus?');
+        IS_DEVELOPEMENT_MODE && console.warn('Man, why, why so many zombies disguised in Santa Claus?');
       }
     }
     return html || '';
@@ -179,6 +182,5 @@ function Pebl(tplElement, url, events) {
     console.log(dataElement);
     return this;
   }
-
   return this;
 }
