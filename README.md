@@ -14,7 +14,7 @@ Usage
 
 h3. Javascript
 
-` 
+``` 
 var _events = function() {
 //add events triggered for elements that will be replaced, in #tpl
 });
@@ -27,11 +27,11 @@ pebl.loadData();
 
 //replace
 pebl.replace();
-`
+```
 
 h3. HTML
 
-`
+```
 <div id='tpl'>
  {arrayElement/}
  <div>
@@ -41,13 +41,13 @@ h3. HTML
  {/arrayElement}
  {notAnArray}
 </div>
-`
+```
 
 h3. API
 
 The URL /api/ should return a json element structured like that :
 
-`
+```
 {
     "arrayElement": [
         {
@@ -61,11 +61,11 @@ The URL /api/ should return a json element structured like that :
     ],
     "notAnArray": "not an array value"
 }
-`
+```
 
-h3. Replaced values i
+h3. Replaced values 
 
-`
+```
 <div id='tpl'>
  <div>
   <h1>alpha first element value</h1>
@@ -77,8 +77,8 @@ h3. Replaced values i
  </div>
  not an array value
 </div>
+```
 
-`
 
 h3. ... 
 
