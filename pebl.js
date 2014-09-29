@@ -2,6 +2,8 @@
  * 
  * * pebl.js
  * 
+ * https://github.com/leberger/pebl.js
+ * 
  * simple js templating
  * 
  * @author Cedric, hello@linux-commands-examples.com
@@ -9,23 +11,6 @@
  * 
  * @requires jQuery
  * 
- * It replaces all data the dataElement has in the original element
- * dataElement is an key=>value array
- * 
- * for each key : '{'+key+'}' will be replaced in the original template (html) element
- * 
- * dataProvider is an url, loadData will get it,
- *  the ajax call should return an array with key=>values element that match
- *   the original html template
- * 
- * usage : 
- //create an object
- tpl = new Pebl($('#tpl'), '/_category/help-categorise-ajax', _events);
- //load data
- tpl.loadData();  
- //replace
- tpl.replace();
- *
  ***/
 
 /**
