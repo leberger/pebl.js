@@ -12,7 +12,7 @@ Easy to use, it is a block that provides the perfect synergy for modern applicat
 Usage
 -----
 
-h3. Javascript
+### Javascript
 
 ``` 
 var _events = function() {
@@ -29,7 +29,7 @@ pebl.loadData();
 pebl.replace();
 ```
 
-h3. HTML
+### HTML
 
 ```
 <div id='tpl'>
@@ -43,7 +43,7 @@ h3. HTML
 </div>
 ```
 
-h3. API
+### API
 
 The URL /api/ should return a json element structured like that :
 
@@ -63,7 +63,7 @@ The URL /api/ should return a json element structured like that :
 }
 ```
 
-h3. Replaced values 
+### Replaced values 
 
 ```
 <div id='tpl'>
@@ -80,9 +80,9 @@ h3. Replaced values
 ```
 
 
-h3. ... 
+### ... 
 
- * #tpl
+ * \#tpl
  in the #tpl element, each key : '{'+key+'}' will be replaced by the matching value in provided by the data provider
  
  *  '/api/'
