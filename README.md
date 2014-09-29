@@ -3,6 +3,9 @@ pebl.js
 
 Micro Javascript Templating
 
+
+
+
 Why use pebljs in your project ?
 --------------------------------
 
@@ -98,3 +101,12 @@ The URL /api/ should return a json element structured like that :
 @todo:  insert another example
 
 ```
+
+### Todo
+* do a minify version
+* do a dev version and add if(IS_DEV_MODE) console.log() to add some extra useful info for development purposes
+* add unittests
+* show example of other function and show it is chainable
+* show how to replace on completion
+
+ 
