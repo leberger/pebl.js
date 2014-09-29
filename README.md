@@ -43,7 +43,7 @@ pebl.replace();
 </div>
 ```
 
-### API
+### data provider (your API)
 
 The URL /api/ should return a json element structured like that :
 
@@ -82,12 +82,19 @@ The URL /api/ should return a json element structured like that :
 
 ### ... 
 
- * \#tpl
+ * \#tpl  
  in the #tpl element, each key : '{'+key+'}' will be replaced by the matching value in provided by the data provider
  
- *  '/api/'
+ *  '/api/'  
  this dataProvider is an url, the method loadData will get new values and stack it internally. The ajax call should return an array with key=>values element that match the original html template
  
- *  _events
+ *  _events  
  javascript events that are bind to the elements that have been replaced. Basically, a function executed each time
  
+
+### Example
+
+```
+insert another example
+
+```
