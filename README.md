@@ -11,7 +11,9 @@ Easy to use, it is a block that provides the perfect synergy for modern applicat
   
 Usage
 -----
+
 h3. Javascript
+
 ` 
 var _events = function() {
 //add events triggered for elements that will be replaced, in #tpl
@@ -26,7 +28,9 @@ pebl.loadData();
 //replace
 pebl.replace();
 `
+
 h3. HTML
+
 `
 <div id='tpl'>
  {arrayElement/}
@@ -38,8 +42,11 @@ h3. HTML
  {notAnArray}
 </div>
 `
+
 h3. API
+
 The URL /api/ should return a json element structured like that :
+
 `
 {
     "arrayElement": [
@@ -57,6 +64,7 @@ The URL /api/ should return a json element structured like that :
 `
 
 h3. Replaced values i
+
 `
 <div id='tpl'>
  <div>
@@ -73,6 +81,7 @@ h3. Replaced values i
 `
 
 h3. ... 
+
  * #tpl
  in the #tpl element, each key : '{'+key+'}' will be replaced by the matching value in provided by the data provider
  
