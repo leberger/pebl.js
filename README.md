@@ -95,6 +95,6 @@ The URL /api/ should return a json element structured like that :
 ### Example
 
 ```
-insert another example
+@todo:  insert another example
 
 ```

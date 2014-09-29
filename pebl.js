@@ -2,7 +2,6 @@
  * 
  * * pebl.js
  * 
- * https://github.com/leberger/pebl.js
  * 
  * simple js templating
  * 
@@ -10,6 +9,12 @@
  * @date 24 Jan 2013, modified 29 Sept 2014
  * 
  * @requires jQuery
+ * 
+ * 
+ * https://github.com/leberger/pebl.js
+ * 
+ * Lisence :   GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+ * 
  * 
  ***/
 
