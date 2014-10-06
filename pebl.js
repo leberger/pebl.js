@@ -175,6 +175,15 @@ function Pebl(tplElement, url, events) {
   }
 
   /**
+   * get the element number i from the data stack
+   * @param int i
+   * @returns json object data
+   */
+  this.getCurrent = function(i) {
+    return dataElement.slice(0,1);
+  }
+
+  /**
    * console.log data
    * @returns Pebl object
    */
