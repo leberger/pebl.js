@@ -9,7 +9,8 @@ Micro Javascript Templating
 Why use pebljs in your project ?
 --------------------------------
 
-Easy to use, it is a block that provides the perfect synergy for modern applications between data provider and templating. If you have thought of your backend as an API for your frontend, pebljs will be the key for your frontend pages.
+Easy to use, it is the front end tier block of your application. It provides the perfect synergy for modern applications between data provider and templating.
+If you have thought of your backend as an API for your frontend, pebljs will be the key for your frontend pages.
 
   
 Usage
@@ -22,13 +23,10 @@ var _events = function() {
 //add events triggered for elements that will be replaced, in #tpl
 });
 
-//create an object
 pebl = new Pebl($('#tpl'), '/api/', _events);
 
-//load data
 pebl.loadData();  
 
-//replace
 pebl.replace();
 ```
 
@@ -48,7 +46,7 @@ pebl.replace();
 
 ### data provider (your API)
 
-The URL /api/ should return a json element structured like that :
+The URL `/api/` should return a JSON element structured like that :
 
 ```
 {
@@ -66,7 +64,7 @@ The URL /api/ should return a json element structured like that :
 }
 ```
 
-### Replaced values 
+### Result 
 
 ```
 <div id='tpl'>
@@ -108,5 +106,5 @@ The URL /api/ should return a json element structured like that :
 * add unittests
 * show example of other function and show it is chainable
 * show how to replace on completion
-
- 
+* add events to be triggered on some HTTP response . Use 4*, 40*, 30*. 404 code and patterns to name them. 
+* there is an example.php . Rename it to api.php , and add the index.html , and put all that in an example directory 
