@@ -18,8 +18,8 @@
  * 
  ***/
 
-if ('undefined' === typeof IS_DEVELOPEMENT_MODE)
-  var IS_DEVELOPEMENT_MODE = false;
+if ('undefined' === typeof ISDEV)
+  var ISDEV = false;
 
 /**
  * 
@@ -30,12 +30,16 @@ if ('undefined' === typeof IS_DEVELOPEMENT_MODE)
  * @returns Pebl object
  */
 function Pebl(tplElement, url, events) {
-  this.dataProvider = url;
+  ISDEV && !tplElement && console.log('no tplElement given to instantiate Pebl. Is it right ?');
+  ISDEV && !url && console.log('no url given to instantiate Pebl. Is it right ?');
+  ISDEV && !events && console.log('no events given to instantiate Pebl. Is it right ?');
+
+  var dataProvider = url;
   var dataElement = [];
-  this.tplElement = tplElement;
-  this.events = events;
-  this.tplOriginalHtml = tplElement.html();
-  if ('undefined' === typeof this.tplOriginalHtml)
+  var tplElement = tplElement;
+  var events = events;
+  var tplOriginalHtml = tplElement.html();
+  if ('undefined' === typeof tplOriginalHtml)
     throw 'Make sure that the tplElement exists and is not empty';
 
   /**
@@ -43,10 +47,10 @@ function Pebl(tplElement, url, events) {
    */
   this.replace = function() {
     var oneDataPiece = this.shiftData();
-    var html = this.tplOriginalHtml;
+    var html = tplOriginalHtml;
     html = replaceRecurisive(html, oneDataPiece);
-    this.tplElement.html(html);
-    this.bindEvents();
+    tplElement.html(html);
+    bindEvents();
     return this;
   }
 
@@ -70,7 +74,7 @@ function Pebl(tplElement, url, events) {
     }
     else {
       //we do not modify html
-      IS_DEVELOPEMENT_MODE && console.warn('no html template element was found for"' + key + '"');
+      ISDEV && console.warn('no html template element was found for "' + key + '"');
     }
     return html;
   }
@@ -93,7 +97,7 @@ function Pebl(tplElement, url, events) {
         }
       }
       else {
-        IS_DEVELOPEMENT_MODE && console.warn('Man, why, why so many zombies disguised in Santa Claus?');
+        ISDEV && console.warn('Man, why, why so many zombies disguised in Santa Claus?');
       }
     }
     return html || '';
@@ -102,11 +106,15 @@ function Pebl(tplElement, url, events) {
   /**
    * @returns Pebl object
    */
-  this.bindEvents = function() {
+  var bindEvents = function() {
     //@todo : only apply that to the element replaced,
     // so that it is localised
-    if ('function' === typeof this.events) {
-      this.events();
+    if ('function' === typeof events) {
+      events();
+    }
+    else {
+      ISDEV && console.log('events are not a function.\n\
+Please make sure that you initialise Pebl correctly with a function');
     }
 
     return this;
@@ -122,7 +130,7 @@ function Pebl(tplElement, url, events) {
   this.loadData = function(arg, _callback) {
     var that = this;
     $.ajax({
-      url: that.dataProvider,
+      url: dataProvider,
       type: "GET",
       data: arg,
       success: function(data) {
@@ -136,8 +144,7 @@ function Pebl(tplElement, url, events) {
           }
         }
         catch (e) {
-          console.warn(e.message);
-          console.warn('is data returned in JSON format ?? :\n' + data);
+          console.warn(e.message + '...', 'is data returned in JSON format ?? :\n' + data);
         }
       }
     }).fail(function() {
@@ -149,10 +156,29 @@ function Pebl(tplElement, url, events) {
   /**
    * add data to the data stack
    * @param json object, data
-   * @returns this
+   * @param boolean toTop empty of false if element to be added at the end of stack
+   * @returns Pebl this
    */
-  this.addData = function(data) {
-    dataElement.push(data);
+  this.addData = function(data, toTop) {
+    if (toTop) {
+      dataElement.unshift(data);
+    } else {
+      dataElement.push(data);
+    }
+    return this;
+  }
+
+  /**
+   * add data to the data stack
+   * @param json object, data
+   * @param boolean toTop empty of false if element to be added at the end of stack
+   * @returns Pebl this
+   */
+  this.addDataInBulk = function(data, toTop) {
+    var that = this;
+    $(data).each(function() {
+      that.addData(this, toTop);
+    });
     return this;
   }
 
@@ -165,12 +191,15 @@ function Pebl(tplElement, url, events) {
   }
 
   /**
-   * get the element number i from the data stack
+   * get the element number i from the data stack, and let it there
    * @param int i
    * @returns json object data
    */
-  this.getAllData = function(i) {
-    return jQuery.extend(true, {}, dataElement)[0];
+  this.getSpecificData = function(i) {
+    if ('undefined' === typeof i) {
+      i = 0;
+    }
+    return jQuery.extend(true, {}, dataElement)[i];
     //    return dataElement.slice();
   }
 
@@ -180,7 +209,7 @@ function Pebl(tplElement, url, events) {
    * @returns json object data
    */
   this.getCurrent = function(i) {
-    return dataElement.slice(0,1);
+    return dataElement.slice(0, 1);
   }
 
   /**
